@@ -1,0 +1,56 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x1f42630 .scope module, "ortb" "ortb" 2 3;
+ .timescale 0 0;
+v0x1f52c50_0 .var "a1", 0 0;
+v0x1f52cf0_0 .var "b1", 0 0;
+RS_0x7fd37ef00138 .resolv tri, L_0x1f53340, L_0x1f53510, C4<z>, C4<z>;
+v0x1f52da0_0 .net8 "out", 0 0, RS_0x7fd37ef00138; 2 drivers, strength-aware
+S_0x1f42720 .scope module, "n" "cmos_or" 2 18, 3 1, S_0x1f42630;
+ .timescale 0 0;
+L_0x1f52f70 .functor NMOS 1, C8<770>, v0x1f52cf0_0, C4<0>, C4<0>;
+L_0x1f530a0 .functor NMOS 1, C8<770>, v0x1f52c50_0, C4<0>, C4<0>;
+L_0x1f531a0 .functor PMOS 1, C8<771>, v0x1f52cf0_0, C4<0>, C4<0>;
+L_0x1f53250 .functor PMOS 1, L_0x1f531a0, v0x1f52c50_0, C4<0>, C4<0>;
+RS_0x7fd37ef00108 .resolv tri, L_0x1f52f70, L_0x1f530a0, L_0x1f53250, C4<z>;
+L_0x1f53340 .functor NMOS 1, C8<770>, RS_0x7fd37ef00108, C4<0>, C4<0>;
+L_0x1f53510 .functor PMOS 1, C8<771>, RS_0x7fd37ef00108, C4<0>, C4<0>;
+v0x1f0c690_0 .net "a", 0 0, v0x1f52c50_0; 1 drivers
+v0x1f52840_0 .net "b", 0 0, v0x1f52cf0_0; 1 drivers
+v0x1f528e0_0 .net8 "gnd", 0 0, C8<770>; 1 drivers, strength-aware
+v0x1f52980_0 .net8 "vdd", 0 0, C8<771>; 1 drivers, strength-aware
+v0x1f52a30_0 .net8 "w", 0 0, L_0x1f531a0; 1 drivers, strength-aware
+v0x1f52ad0_0 .net8 "w1", 0 0, RS_0x7fd37ef00108; 3 drivers, strength-aware
+v0x1f52bb0_0 .alias "y", 0 0, v0x1f52da0_0;
+    .scope S_0x1f42630;
+T_0 ;
+    %vpi_call 2 7 "$dumpfile", "ortest.vcd";
+    %vpi_call 2 8 "$dumpvars", 1'sb0, S_0x1f42630;
+    %vpi_call 2 9 "$display", "in1,in2,out";
+    %vpi_call 2 10 "$monitor", "%b,%b,%b", v0x1f52c50_0, v0x1f52cf0_0, v0x1f52da0_0;
+    %delay 20, 0;
+    %set/v v0x1f52c50_0, 0, 1;
+    %set/v v0x1f52cf0_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x1f52c50_0, 1, 1;
+    %set/v v0x1f52cf0_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x1f52c50_0, 0, 1;
+    %set/v v0x1f52cf0_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0x1f52c50_0, 1, 1;
+    %set/v v0x1f52cf0_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 15 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "ortest.v";
+    "./or.v";

@@ -1,0 +1,52 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x24b6730 .scope module, "nortb" "nortb" 2 3;
+ .timescale 0 0;
+v0x24fc2f0_0 .var "a1", 0 0;
+v0x24fc390_0 .var "b1", 0 0;
+RS_0x7f3abe826108 .resolv tri, L_0x24fc610, L_0x24fc760, L_0x24fc8c0, C4<z>;
+v0x24fc440_0 .net8 "out", 0 0, RS_0x7f3abe826108; 3 drivers, strength-aware
+S_0x24b6820 .scope module, "n" "cmos_nor" 2 18, 3 1, S_0x24b6730;
+ .timescale 0 0;
+L_0x24fc610 .functor NMOS 1, C8<770>, v0x24fc390_0, C4<0>, C4<0>;
+L_0x24fc760 .functor NMOS 1, C8<770>, v0x24fc2f0_0, C4<0>, C4<0>;
+L_0x24fc810 .functor PMOS 1, C8<771>, v0x24fc390_0, C4<0>, C4<0>;
+L_0x24fc8c0 .functor PMOS 1, L_0x24fc810, v0x24fc2f0_0, C4<0>, C4<0>;
+v0x24ec010_0 .net "a", 0 0, v0x24fc2f0_0; 1 drivers
+v0x24fbf80_0 .net "b", 0 0, v0x24fc390_0; 1 drivers
+v0x24fc020_0 .net8 "gnd", 0 0, C8<770>; 1 drivers, strength-aware
+v0x24fc0c0_0 .net8 "vdd", 0 0, C8<771>; 1 drivers, strength-aware
+v0x24fc170_0 .net8 "w", 0 0, L_0x24fc810; 1 drivers, strength-aware
+v0x24fc210_0 .alias "y", 0 0, v0x24fc440_0;
+    .scope S_0x24b6730;
+T_0 ;
+    %vpi_call 2 7 "$dumpfile", "nortest.v";
+    %vpi_call 2 8 "$dumpvars", 1'sb0, S_0x24b6730;
+    %vpi_call 2 9 "$display", "in1,in2,out";
+    %vpi_call 2 10 "$monitor", "%b,%b,%b", v0x24fc2f0_0, v0x24fc390_0, v0x24fc440_0;
+    %delay 20, 0;
+    %set/v v0x24fc2f0_0, 0, 1;
+    %set/v v0x24fc390_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x24fc2f0_0, 1, 1;
+    %set/v v0x24fc390_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x24fc2f0_0, 0, 1;
+    %set/v v0x24fc390_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0x24fc2f0_0, 1, 1;
+    %set/v v0x24fc390_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 15 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "nortest.v";
+    "./nor.v";

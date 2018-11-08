@@ -1,0 +1,77 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x25e2690 .scope module, "e8bitdividetb" "e8bitdividetb" 2 2;
+ .timescale 0 0;
+v0x26297a0_0 .var "clock", 0 0;
+v0x2629870_0 .net "count_out", 7 0, v0x26295b0_0; 1 drivers
+v0x2629920_0 .var "enable", 0 0;
+v0x26299d0_0 .var "reset", 0 0;
+S_0x25e2780 .scope module, "eb" "e8bitdivide" 2 7, 3 1, S_0x25e2690;
+ .timescale 0 0;
+v0x25e2870_0 .net "clock", 0 0, v0x26297a0_0; 1 drivers
+v0x26295b0_0 .var "count_out", 7 0;
+v0x2629650_0 .net "enable", 0 0, v0x2629920_0; 1 drivers
+v0x26296f0_0 .net "reset", 0 0, v0x26299d0_0; 1 drivers
+E_0x25f53c0 .event posedge, v0x25e2870_0;
+    .scope S_0x25e2780;
+T_0 ;
+    %wait E_0x25f53c0;
+    %load/v 8, v0x26296f0_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v0x26295b0_0, 1, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v0x2629650_0, 1;
+    %jmp/0xz  T_0.2, 8;
+    %load/v 8, v0x26295b0_0, 8;
+    %movi 16, 2, 8;
+    %div 8, 16, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v0x26295b0_0, 1, 8;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x25e2690;
+T_1 ;
+    %set/v v0x26297a0_0, 1, 1;
+    %set/v v0x26299d0_0, 0, 1;
+    %set/v v0x2629920_0, 0, 1;
+    %delay 5, 0;
+    %set/v v0x26299d0_0, 1, 1;
+    %delay 10, 0;
+    %set/v v0x26299d0_0, 0, 1;
+    %delay 10, 0;
+    %set/v v0x2629920_0, 1, 1;
+    %delay 100, 0;
+    %set/v v0x2629920_0, 0, 1;
+    %delay 5, 0;
+    %vpi_call 2 17 "$finish";
+    %end;
+    .thread T_1;
+    .scope S_0x25e2690;
+T_2 ;
+    %delay 5, 0;
+    %load/v 8, v0x26297a0_0, 1;
+    %inv 8, 1;
+    %set/v v0x26297a0_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0x25e2690;
+T_3 ;
+    %vpi_call 2 24 "$dumpfile", "e8bitdivide.vcd";
+    %vpi_call 2 25 "$dumpvars", 1'sb0, S_0x25e2690;
+    %vpi_call 2 26 "$monitor", "time = %g, clock =%b, reset=%b, enable=%b, count_out=%b", $time, v0x26297a0_0, v0x26299d0_0, v0x2629920_0, v0x2629870_0;
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "divide2_tb.v";
+    "./divide2.v";

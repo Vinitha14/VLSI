@@ -1,0 +1,6 @@
+vlsi commands
+
+iverilog -o and.vvp andtest.v
+ vvp and.vvp
+gtkwave andtest.vcd
+

@@ -1,0 +1,45 @@
+$date
+	Thu Nov  8 07:19:41 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module comparatortb $end
+$var wire 1 ! Y $end
+$var reg 1 " abit $end
+$var reg 1 # bbit $end
+$var reg 1 $ sbit $end
+$scope module obj $end
+$var wire 1 % a $end
+$var wire 1 & b $end
+$var wire 1 ' s $end
+$var wire 1 ! y $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+x'
+x&
+x%
+x$
+x#
+x"
+x!
+$end
+#20
+0!
+0$
+0'
+0#
+0&
+1"
+1%
+#40
+1!
+1$
+1'
+#60

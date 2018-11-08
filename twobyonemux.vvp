@@ -1,0 +1,89 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x173f690 .scope module, "twobyonemux_tb" "twobyonemux_tb" 2 2;
+ .timescale 0 0;
+v0x178af00_0 .var "a1", 0 0;
+v0x178afa0_0 .var "b1", 0 0;
+RS_0x7f20fdf9e1f8 .resolv tri, L_0x178baa0, L_0x178bd70, C4<z>, C4<z>;
+v0x178b050_0 .net8 "out", 0 0, RS_0x7f20fdf9e1f8; 2 drivers, strength-aware
+v0x178b100_0 .var "s1", 0 0;
+S_0x173f780 .scope module, "n" "cmos_twobyonemux" 2 24, 3 1, S_0x173f690;
+ .timescale 0 0;
+L_0x178b300 .functor NMOS 1, C8<770>, v0x178b100_0, C4<0>, C4<0>;
+L_0x178b3e0 .functor PMOS 1, C8<771>, v0x178b100_0, C4<0>, C4<0>;
+L_0x178b4e0 .functor NMOS 1, C8<770>, v0x178af00_0, C4<0>, C4<0>;
+RS_0x7f20fdf9e138 .resolv tri, L_0x178b300, L_0x178b3e0, C4<z>, C4<z>;
+L_0x178b590 .functor NMOS 1, L_0x178b4e0, RS_0x7f20fdf9e138, C4<0>, C4<0>;
+L_0x178b640 .functor NMOS 1, C8<770>, v0x178afa0_0, C4<0>, C4<0>;
+L_0x178b730 .functor NMOS 1, L_0x178b640, v0x178b100_0, C4<0>, C4<0>;
+L_0x178b8c0 .functor PMOS 1, C8<771>, RS_0x7f20fdf9e138, C4<0>, C4<0>;
+L_0x178b9b0 .functor PMOS 1, C8<771>, v0x178af00_0, C4<0>, C4<0>;
+RS_0x7f20fdf9e198 .resolv tri, L_0x178b8c0, L_0x178b9b0, C4<z>, C4<z>;
+L_0x178bb00 .functor PMOS 1, RS_0x7f20fdf9e198, v0x178b100_0, C4<0>, C4<0>;
+L_0x178bb60 .functor PMOS 1, RS_0x7f20fdf9e198, v0x178afa0_0, C4<0>, C4<0>;
+RS_0x7f20fdf9e1c8 .resolv tri, L_0x178b590, L_0x178b730, L_0x178bb00, L_0x178bb60;
+L_0x178baa0 .functor NMOS 1, C8<770>, RS_0x7f20fdf9e1c8, C4<0>, C4<0>;
+L_0x178bd70 .functor PMOS 1, C8<771>, RS_0x7f20fdf9e1c8, C4<0>, C4<0>;
+v0x173f160_0 .net "a", 0 0, v0x178af00_0; 1 drivers
+v0x178a7c0_0 .net "b", 0 0, v0x178afa0_0; 1 drivers
+v0x178a860_0 .net8 "gnd", 0 0, C8<770>; 1 drivers, strength-aware
+v0x178a900_0 .net "s", 0 0, v0x178b100_0; 1 drivers
+v0x178a9b0_0 .net8 "vdd", 0 0, C8<771>; 1 drivers, strength-aware
+v0x178aa50_0 .net8 "w", 0 0, L_0x178b4e0; 1 drivers, strength-aware
+v0x178ab30_0 .net8 "w1", 0 0, RS_0x7f20fdf9e138; 2 drivers, strength-aware
+v0x178abd0_0 .net8 "w2", 0 0, L_0x178b640; 1 drivers, strength-aware
+v0x178acc0_0 .net8 "w3", 0 0, RS_0x7f20fdf9e198; 2 drivers, strength-aware
+v0x178ad60_0 .net8 "w4", 0 0, RS_0x7f20fdf9e1c8; 4 drivers, strength-aware
+v0x178ae60_0 .alias "y", 0 0, v0x178b050_0;
+    .scope S_0x173f690;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "cmos_twobyonemux.vcd";
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_0x173f690;
+    %vpi_call 2 10 "$display", "s1,in1,in2,out";
+    %vpi_call 2 11 "$monitor", "%b, %b, %b, %b", v0x178b100_0, v0x178af00_0, v0x178afa0_0, v0x178b050_0;
+    %delay 20, 0;
+    %set/v v0x178b100_0, 0, 1;
+    %set/v v0x178af00_0, 0, 1;
+    %set/v v0x178afa0_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x178b100_0, 0, 1;
+    %set/v v0x178af00_0, 0, 1;
+    %set/v v0x178afa0_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0x178b100_0, 0, 1;
+    %set/v v0x178af00_0, 1, 1;
+    %set/v v0x178afa0_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x178b100_0, 0, 1;
+    %set/v v0x178af00_0, 1, 1;
+    %set/v v0x178afa0_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0x178b100_0, 1, 1;
+    %set/v v0x178af00_0, 0, 1;
+    %set/v v0x178afa0_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x178b100_0, 1, 1;
+    %set/v v0x178af00_0, 0, 1;
+    %set/v v0x178afa0_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0x178b100_0, 1, 1;
+    %set/v v0x178af00_0, 1, 1;
+    %set/v v0x178afa0_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x178b100_0, 1, 1;
+    %set/v v0x178af00_0, 1, 1;
+    %set/v v0x178afa0_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 20 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "twobyonemux_tb.v";
+    "./twobyonemux.v";

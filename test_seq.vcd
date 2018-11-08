@@ -1,0 +1,192 @@
+$date
+	Thu Nov  8 17:37:05 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module seq_detect_test $end
+$var wire 1 ! out $end
+$var reg 1 " clk $end
+$var integer 32 # i [31:0] $end
+$var reg 1 $ in $end
+$var reg 1 % rst $end
+$var reg 16 & sequence [15:0] $end
+$scope module dut $end
+$var wire 1 ' clk $end
+$var wire 1 ( in $end
+$var wire 1 ) rst $end
+$var reg 1 * out $end
+$var reg 2 + state [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 +
+0*
+1)
+x(
+0'
+b1110101111011001 &
+1%
+x$
+bx #
+0"
+0!
+$end
+#5
+1$
+1(
+b0 #
+0%
+0)
+#7
+b1 +
+1"
+1'
+#9
+0$
+0(
+b1 #
+0"
+0'
+#11
+b0 +
+1"
+1'
+#13
+b10 #
+0"
+0'
+#15
+1"
+1'
+#17
+1$
+1(
+b11 #
+0"
+0'
+#19
+b1 +
+1"
+1'
+#21
+b100 #
+0"
+0'
+#23
+b10 +
+1"
+1'
+#25
+0$
+0(
+b101 #
+0"
+0'
+#27
+b0 +
+1"
+1'
+#29
+1$
+1(
+b110 #
+0"
+0'
+#31
+b1 +
+1"
+1'
+#33
+b111 #
+0"
+0'
+#35
+b10 +
+1"
+1'
+#37
+b1000 #
+0"
+0'
+#39
+b11 +
+1"
+1'
+#41
+b1001 #
+0"
+0'
+#43
+b1 +
+1*
+1!
+1"
+1'
+#45
+0$
+0(
+b1010 #
+0"
+0'
+#47
+0*
+0!
+b0 +
+1"
+1'
+#49
+1$
+1(
+b1011 #
+0"
+0'
+#51
+b1 +
+1"
+1'
+#53
+0$
+0(
+b1100 #
+0"
+0'
+#55
+b0 +
+1"
+1'
+#57
+1$
+1(
+b1101 #
+0"
+0'
+#59
+b1 +
+1"
+1'
+#61
+b1110 #
+0"
+0'
+#63
+b10 +
+1"
+1'
+#65
+b1111 #
+0"
+0'
+#67
+b11 +
+1"
+1'
+#69
+b10000 #
+0"
+0'

@@ -1,0 +1,79 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x12ed930 .scope module, "halfaddertb" "halfaddertb" 2 3;
+ .timescale 0 0;
+v0x1322b80_0 .var "a1", 0 0;
+v0x1322c20_0 .var "b1", 0 0;
+RS_0x7f56db1bc258 .resolv tri, L_0x1323c40, L_0x1323ee0, C4<z>, C4<z>;
+v0x1322cd0_0 .net8 "carry", 0 0, RS_0x7f56db1bc258; 2 drivers, strength-aware
+RS_0x7f56db1bc228 .resolv tri, L_0x13233e0, L_0x1323530, L_0x13235e0, L_0x1323940;
+v0x1322d80_0 .net8 "sum", 0 0, RS_0x7f56db1bc228; 4 drivers, strength-aware
+S_0x12d8690 .scope module, "n" "cmos_halfadder" 2 18, 3 1, S_0x12ed930;
+ .timescale 0 0;
+L_0x1322f20 .functor PMOS 1, C8<771>, v0x1322b80_0, C4<0>, C4<0>;
+L_0x1323000 .functor NMOS 1, C8<770>, v0x1322b80_0, C4<0>, C4<0>;
+L_0x1323100 .functor PMOS 1, C8<771>, v0x1322c20_0, C4<0>, C4<0>;
+L_0x13231b0 .functor NMOS 1, C8<770>, v0x1322c20_0, C4<0>, C4<0>;
+L_0x1323260 .functor NMOS 1, C8<770>, v0x1322c20_0, C4<0>, C4<0>;
+L_0x13233e0 .functor NMOS 1, L_0x1323260, v0x1322b80_0, C4<0>, C4<0>;
+RS_0x7f56db1bc0a8 .resolv tri, L_0x1323100, L_0x13231b0, C4<z>, C4<z>;
+L_0x13234d0 .functor NMOS 1, C8<770>, RS_0x7f56db1bc0a8, C4<0>, C4<0>;
+RS_0x7f56db1bc078 .resolv tri, L_0x1322f20, L_0x1323000, C4<z>, C4<z>;
+L_0x1323530 .functor NMOS 1, L_0x13234d0, RS_0x7f56db1bc078, C4<0>, C4<0>;
+L_0x1323640 .functor PMOS 1, C8<771>, v0x1322b80_0, C4<0>, C4<0>;
+L_0x1323730 .functor PMOS 1, C8<771>, v0x1322c20_0, C4<0>, C4<0>;
+RS_0x7f56db1bc198 .resolv tri, L_0x1323640, L_0x1323730, C4<z>, C4<z>;
+L_0x13235e0 .functor PMOS 1, RS_0x7f56db1bc198, RS_0x7f56db1bc078, C4<0>, C4<0>;
+L_0x1323940 .functor PMOS 1, RS_0x7f56db1bc198, RS_0x7f56db1bc0a8, C4<0>, C4<0>;
+L_0x1323b60 .functor NMOS 1, C8<770>, v0x1322c20_0, C4<0>, C4<0>;
+L_0x1323be0 .functor NMOS 1, L_0x1323b60, v0x1322b80_0, C4<0>, C4<0>;
+L_0x1323cd0 .functor PMOS 1, C8<771>, v0x1322c20_0, C4<0>, C4<0>;
+L_0x1323d30 .functor PMOS 1, C8<771>, v0x1322b80_0, C4<0>, C4<0>;
+RS_0x7f56db1bc1f8 .resolv tri, L_0x1323be0, L_0x1323cd0, L_0x1323d30, C4<z>;
+L_0x1323c40 .functor NMOS 1, C8<770>, RS_0x7f56db1bc1f8, C4<0>, C4<0>;
+L_0x1323ee0 .functor PMOS 1, C8<771>, RS_0x7f56db1bc1f8, C4<0>, C4<0>;
+v0x12d8780_0 .net "a", 0 0, v0x1322b80_0; 1 drivers
+v0x1322290_0 .net "b", 0 0, v0x1322c20_0; 1 drivers
+v0x1322330_0 .net8 "c1", 0 0, RS_0x7f56db1bc078; 2 drivers, strength-aware
+v0x13223d0_0 .net8 "c2", 0 0, RS_0x7f56db1bc0a8; 2 drivers, strength-aware
+v0x1322480_0 .net8 "gnd", 0 0, C8<770>; 1 drivers, strength-aware
+v0x1322520_0 .net8 "vdd", 0 0, C8<771>; 1 drivers, strength-aware
+v0x1322600_0 .net8 "w", 0 0, L_0x13234d0; 1 drivers, strength-aware
+v0x13226a0_0 .net8 "w1", 0 0, L_0x1323260; 1 drivers, strength-aware
+v0x1322790_0 .net8 "w2", 0 0, RS_0x7f56db1bc198; 2 drivers, strength-aware
+v0x1322830_0 .net8 "w3", 0 0, L_0x1323b60; 1 drivers, strength-aware
+v0x1322930_0 .net8 "w4", 0 0, RS_0x7f56db1bc1f8; 3 drivers, strength-aware
+v0x13229d0_0 .alias "x", 0 0, v0x1322d80_0;
+v0x1322ae0_0 .alias "y", 0 0, v0x1322cd0_0;
+    .scope S_0x12ed930;
+T_0 ;
+    %vpi_call 2 7 "$dumpfile", "halfaddertest.vcd";
+    %vpi_call 2 8 "$dumpvars", 1'sb0, S_0x12ed930;
+    %vpi_call 2 9 "$display", "in1,in2,sum,carry";
+    %vpi_call 2 10 "$monitor", "%b,%b,%b,%b", v0x1322b80_0, v0x1322c20_0, v0x1322d80_0, v0x1322cd0_0;
+    %delay 20, 0;
+    %set/v v0x1322b80_0, 0, 1;
+    %set/v v0x1322c20_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x1322b80_0, 1, 1;
+    %set/v v0x1322c20_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0x1322b80_0, 0, 1;
+    %set/v v0x1322c20_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0x1322b80_0, 1, 1;
+    %set/v v0x1322c20_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 15 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "halfaddertest.v";
+    "./halfadder.v";

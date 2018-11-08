@@ -1,0 +1,102 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x1282910 .scope module, "fa_32tb" "fa_32tb" 2 2;
+ .timescale 0 0;
+v0x12cdc80_0 .var "abit", 31 0;
+v0x12cdd20_0 .var "bbit", 31 0;
+v0x12cddd0_0 .net "c", 0 0, v0x12cd9b0_0; 1 drivers
+v0x12cde80_0 .net "d", 32 0, v0x12cda50_0; 1 drivers
+v0x12cdf60_0 .net "p", 32 0, v0x12cdb00_0; 1 drivers
+v0x12ce010_0 .net "s", 32 0, v0x12cdba0_0; 1 drivers
+S_0x1283690 .scope module, "obj" "fa_32" 2 30, 3 1, S_0x1282910;
+ .timescale 0 0;
+v0x1297740_0 .net "a", 31 0, v0x12cdc80_0; 1 drivers
+v0x12cd910_0 .net "b", 31 0, v0x12cdd20_0; 1 drivers
+v0x12cd9b0_0 .var "cout", 0 0;
+v0x12cda50_0 .var "dif", 32 0;
+v0x12cdb00_0 .var "pdt", 32 0;
+v0x12cdba0_0 .var "sum", 32 0;
+E_0x1296290 .event edge, v0x12cd910_0, v0x1297740_0;
+    .scope S_0x1283690;
+T_0 ;
+    %wait E_0x1296290;
+    %load/v 8, v0x1297740_0, 32;
+    %mov 40, 0, 1;
+    %load/v 41, v0x12cd910_0, 32;
+    %mov 73, 0, 1;
+    %add 8, 41, 33;
+    %set/v v0x12cdba0_0, 8, 33;
+    %load/v 8, v0x1297740_0, 32;
+    %mov 40, 1, 1;
+    %load/v 41, v0x12cd910_0, 32;
+    %mov 73, 0, 1;
+    %sub 8, 41, 33;
+    %set/v v0x12cda50_0, 8, 33;
+    %load/v 8, v0x1297740_0, 32;
+    %mov 40, 0, 1;
+    %load/v 41, v0x12cd910_0, 32;
+    %mov 73, 0, 1;
+    %mul 8, 41, 33;
+    %set/v v0x12cdb00_0, 8, 33;
+    %ix/load 1, 32, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.0, 4;
+    %load/x1p 8, v0x12cdba0_0, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %mov 8, 2, 1;
+T_0.1 ;
+; Save base=8 wid=1 in lookaside.
+    %jmp/0xz  T_0.2, 8;
+    %set/v v0x12cd9b0_0, 1, 1;
+    %jmp T_0.3;
+T_0.2 ;
+    %set/v v0x12cd9b0_0, 0, 1;
+T_0.3 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x1282910;
+T_1 ;
+    %set/v v0x12cdc80_0, 0, 32;
+    %set/v v0x12cdd20_0, 0, 32;
+    %delay 20, 0;
+    %movi 8, 2, 32;
+    %set/v v0x12cdc80_0, 8, 32;
+    %movi 8, 1, 32;
+    %set/v v0x12cdd20_0, 8, 32;
+    %delay 20, 0;
+    %movi 8, 24, 32;
+    %set/v v0x12cdc80_0, 8, 32;
+    %movi 8, 2, 32;
+    %set/v v0x12cdd20_0, 8, 32;
+    %delay 20, 0;
+    %movi 8, 16, 32;
+    %set/v v0x12cdc80_0, 8, 32;
+    %movi 8, 2, 32;
+    %set/v v0x12cdd20_0, 8, 32;
+    %delay 20, 0;
+    %movi 8, 11, 32;
+    %set/v v0x12cdc80_0, 8, 32;
+    %movi 8, 5, 32;
+    %set/v v0x12cdd20_0, 8, 32;
+    %delay 40, 0;
+    %end;
+    .thread T_1;
+    .scope S_0x1282910;
+T_2 ;
+    %vpi_call 2 24 "$dumpfile", "fa32.vcd";
+    %vpi_call 2 25 "$dumpvars", 1'sb0, S_0x1282910;
+    %vpi_call 2 26 "$display", "time  \011 \011   abit   \011 \011    bbit \011 \011 \011 sum  \011 \011 \011 \011 cout \011 \011  dif  \011 \011 \011 pdt";
+    %vpi_call 2 27 "$monitor", "%2d %32b %32b %32b %1b %32b \012 %32b", $time, v0x12cdc80_0, v0x12cdd20_0, v0x12ce010_0, v0x12cddd0_0, v0x12cde80_0, v0x12cdf60_0;
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "fa_32tb.v";
+    "./fa_32.v";
